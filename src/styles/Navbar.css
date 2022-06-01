@@ -1,0 +1,30 @@
+
+.navigation {
+    align-items: center;
+    background-color: grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 50px;
+}
+
+.navigation ul {  
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.navigation ul li {
+    margin-right: 18px;
+    text-decoration: none;
+}
+.navigation ul li .link{
+    color: white;
+    text-decoration: none;
+}
+
+.navigation ul li .link:hover {
+    color: #212529;
+}
