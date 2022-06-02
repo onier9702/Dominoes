@@ -19,10 +19,9 @@
     color: #495057;
     padding-left: 20px;
     margin-right: 20px;
-    /* height: ;
-    width: 20vw; */
+    width: 20vw;
 }
 .button-table:hover {
     color: #212529;
-}
+} 
 

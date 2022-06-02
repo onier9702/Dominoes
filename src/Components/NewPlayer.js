@@ -1,11 +1,15 @@
 
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addNewPlayer } from '../actions/players';
 import { useForm } from '../hooks/useForm';
 
 import '../styles/NewPlayer.css';
 
 export const NewPlayer = () => {
 
+  const dispatch = useDispatch();
+  const {uid} = useSelector(state => state.auth);
 
   const [formValues, handleInputChange, reset] = useForm({
     name: '',
@@ -15,8 +19,8 @@ export const NewPlayer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('click');
-
+    dispatch( addNewPlayer(uid, name) );
+    reset();
   };
 
 

@@ -4,20 +4,17 @@ import { types } from "../types/types";
 const initialState = {
 
     players: [],
-    player: {
-        name: '',
-        JJ: 0,
-        G: 0,
-        P: 0,
-        Dif: 0,
-        PorcientoG: 0.0,
-        PorcientoP: 0.0,
-    }
+    player: {}
 } 
 
 export const playerReducer = (state = initialState, action) => {
 
     switch (action.type) {
+        case types.playerAdded:
+            return {
+                ...state,
+                player: {...action.payload}
+            }
         case types.playerWon:
             return { 
                 ...state,
@@ -51,8 +48,5 @@ export const playerReducer = (state = initialState, action) => {
         default:
             return state;
     }
-
-
-
 
 }

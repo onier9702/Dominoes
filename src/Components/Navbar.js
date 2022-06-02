@@ -1,9 +1,20 @@
 
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { startLogout } from '../actions/auth';
 import '../styles/Navbar.css';
+
+
+
 export const Navbar = () => {
 
+    const dispatch = useDispatch();
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        dispatch( startLogout() );
+    };
 
   return (
     <div>
@@ -11,13 +22,20 @@ export const Navbar = () => {
             <div className="navigation">
                 <ul >
                     <li>
-                        <Link className="link" aria-current="page" to="/table">Tabla</Link>
+                        <Link  to="/dashboard/" className="link" aria-current="page" >Tabla</Link>
                     </li>
                     <li>
-                        <Link className="link" to="/ranking">Ranking</Link>
+                        <Link  to="/dashboard/ranking" className="link" >Ranking</Link>
                     </li>
                     <li>
-                        <Link className="link" to="/newplayer">AgregarJugador</Link>
+                        <Link  to="/dashboard/newplayer" className="link" >AgregarJugador</Link>
+                    </li>
+                    <li >
+                        <button
+                            type="button"
+                            className="logout"
+                            onClick={handleLogout}
+                        >Logout</button>
                     </li>
                 </ul>
             </div>

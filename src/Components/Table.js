@@ -30,17 +30,17 @@ export const Table = () => {
 
 
 
-    const handleWonGame = () => {
-        dispatch(addWonGame(statistics,JJ,G,P));
+    // const handleWonGame = () => {
+    //     dispatch(addWonGame(statistics,JJ,G,P));
         
-    }
-    const handleLostGame = () => {
-        dispatch(addLostGame(statistics,JJ,G,P));
-    }
+    // }
+    // const handleLostGame = () => {
+    //     dispatch(addLostGame(statistics,JJ,G,P));
+    // }
 
-    const handleClickButtonAdd = () => {
-        setFrag(!frag);
-    }
+    // const handleClickButtonAdd = () => {
+    //     setFrag(!frag);
+    // }
 
     
 
@@ -84,12 +84,18 @@ export const Table = () => {
             </tbody>
         </table>
         
-        <button className="btn-primary" onClick={handleClickButtonAdd}>Add Juego</button>
+        <button className="btn-primary" 
+                // onClick={handleClickButtonAdd}
 
+        >Add Juego</button>
         {
             (frag) &&   <div>
-                            <button className="button-table" onClick={handleWonGame} >Agregar Juego Ganado</button>
-                            <button className="button-table" onClick={handleLostGame} >Agregar Juego Perdido</button>
+                            <button className="button-table" 
+                                    // onClick={handleWonGame} 
+                            >Agregar Juego Ganado</button>
+                            <button className="button-table" 
+                                    // onClick={handleLostGame} 
+                            >Agregar Juego Perdido</button>
                         </div>
         }
             

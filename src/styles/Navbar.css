@@ -28,3 +28,17 @@
 .navigation ul li .link:hover {
     color: #212529;
 }
+
+.logout{
+    border: none;
+    background-color: transparent;
+    color: #0fff;
+    /* right: 5%; */
+}
+
+.logout:hover{
+    color: #00000F;
+}
+
+
+
