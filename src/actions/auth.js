@@ -28,7 +28,7 @@ export const startLogin = ( name ,email, password ) => {
             .then(({user}) => {
                 dispatch(login(user.uid, name));
 
-                console.log(name);
+                // console.log(name);
             })
             .catch((error) => {
                 console.log(error.message);
@@ -52,8 +52,8 @@ export const startLogout = () => {
 
     return (dispatch) => {
         signOut(auth)
-            .then(({user}) => {
-                console.log('Log out');
+            .then((user) => {
+                // console.log('Log out');
                 dispatch(logout());
             })
             .catch(err => {

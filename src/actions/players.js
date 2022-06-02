@@ -1,17 +1,19 @@
 
-import { getAuth } from 'firebase/auth';
+
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore'; 
+
+import {auth, db} from '../firebase/firebase-config';
 import { types } from "../types/types";
-import {db} from '../firebase/firebase-config';
+import { loadPlayersFromFireStore } from '../helpers/loadPlayers';
 
 
-const auth = getAuth();
 
-
-export const addNewPlayer = (uid, name) => {
+export const addNewPlayer = ( name) => {
 
     return async(dispatch) => {
-
+        
+        
+        const {uid} = auth.currentUser;
 
         const newPlayer = {
             
@@ -24,7 +26,7 @@ export const addNewPlayer = (uid, name) => {
             PorcientoP: 0.0,
         };
 
-        // Add a new document with a generated id.
+        //Add a new document with a generated id.
         const docRef = await addDoc(collection(db, uid), newPlayer);
 
         let id = docRef.id;
@@ -40,8 +42,9 @@ export const addNewPlayer = (uid, name) => {
             PorcientoP: 0.0,
         };
         dispatch(addingNewPlayer(playerWithId) );
-        console.log(uid,id);
+        // console.log(uid,id);
         dispatch( updatingPlayer(uid, id, playerWithId) );
+        dispatch(loadingPlayersList(uid));
 
     };
 
@@ -99,6 +102,21 @@ export const updatingPlayer = (uid, id, player) => {
 //     payload: players,
 // })
 
+export const loadingPlayersList = (uid) => {
 
+    return async(dispatch) => {
 
+        const list = await loadPlayersFromFireStore(uid);
+        dispatch( puttingPlayersOnStore(list) );
+
+    };
+
+};
+
+export const puttingPlayersOnStore = (players) => ({
+
+    type: types.playersLoad,
+    payload: players,
+
+});
 

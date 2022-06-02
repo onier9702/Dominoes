@@ -33,7 +33,6 @@ export {
    
   google,
   auth,
-  
   db,
 
 }

@@ -19,7 +19,7 @@ export const NewPlayer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch( addNewPlayer(uid, name) );
+    dispatch( addNewPlayer(name) );
     reset();
   };
 

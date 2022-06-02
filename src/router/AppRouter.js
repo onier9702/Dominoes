@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { Route, Routes } from 'react-router-dom';
+import { onAuthStateChanged } from "firebase/auth";
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { AuthRouter } from './AuthRouter';
 import { DashboardRoutes } from './DashboardRoutes';
@@ -9,29 +9,29 @@ import { PrivateRoute } from './PrivateRoute';
 
 
 import { PublicRoute } from './PublicRoute';
+import { loadingPlayersList } from '../actions/players';
+import { useDispatch } from 'react-redux';
+
+import { auth } from '../firebase/firebase-config';
 
 
 export const AppRouter = () => {
 
-
+  const dispatch = useDispatch();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
-  const auth = getAuth();
   
   useEffect(() => {
   
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          console.log('The user onAuthStateChange: ' + user);
-          console.log(user.uid);
           setIsAuthenticated(true);
+          dispatch(loadingPlayersList(user.uid));  // call a func that load all players from Firestore
         } else {
-          console.log('Signout');
           setIsAuthenticated(false);
         }
       });
  
-  }, [setIsAuthenticated])
+  }, [dispatch,setIsAuthenticated])
 
 
 
@@ -39,6 +39,8 @@ export const AppRouter = () => {
     <div >
 
         <Routes >
+
+          <Route path="/" element={<Navigate to="/auth" />} />
 
             <Route path="dashboard/*" element={ 
               <PrivateRoute isAuthenticated={isAuthenticated}>
@@ -54,7 +56,6 @@ export const AppRouter = () => {
                  <AuthRouter />
                </PublicRoute>} 
             />
-            {/* <Route path="*" element={<Navigate to="/" />} /> */}
 
         </Routes>
     </div>

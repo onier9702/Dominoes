@@ -13,8 +13,6 @@ export const DashboardRoutes = () => {
     <div>
         <Navbar />
 
-        {console.log('Inside dashboard')}
-
         <Routes >
             <Route path="/" element={ <Table /> } />
             <Route path="ranking" element={ <Ranking /> } />
