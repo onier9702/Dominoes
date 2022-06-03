@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, up
 import { auth } from "../firebase/firebase-config";
 import { types } from "../types/types";
 import { finishLoadingPage, startLoadingPage } from "./ui";
+import { loadingPlayersList } from "./players";
 
 export const startRegister = ( name, email, password  ) => {
 
@@ -31,15 +32,20 @@ export const startLogin = ( name ,email, password ) => {
         
         signInWithEmailAndPassword(auth, email, password)
             .then(({user}) => {
+                dispatch( loadingPlayersList(user.uid) );
                 dispatch(finishLoadingPage());
-                dispatch(login(user.uid, name));
+                setTimeout(() => {
+                    dispatch(login(user.uid, name));
+                }, 2500);
 
                 // console.log(name);
             })
             .catch((error) => {
                 console.log(error.message);
+                Swal.fire('Error','Introduce correctamente su Data','error');
+                dispatch(finishLoadingPage());
             });
-
+        
     };
 };
 
@@ -60,6 +66,7 @@ export const startLogout = () => {
             .then((user) => {
                 // console.log('Log out');
                 dispatch(logout());
+                dispatch(listPlayersStoreCleanLogout());
             })
             .catch(err => {
                 console.log(err);
@@ -70,7 +77,10 @@ export const startLogout = () => {
 export const logout = () => ({
     type: types.authLogout,
 })
+export const listPlayersStoreCleanLogout = () => ({
 
+    type: types.playerLogout,
+});
 
 
 

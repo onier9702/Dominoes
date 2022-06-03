@@ -5,6 +5,8 @@ import { userClickPlayer } from '../actions/players';
 
 export const SinglePlayer = ({name, JJ, G, P, Dif, PorcientoG, PorcientoP}) => {
 
+  console.log(name, JJ, G, P, Dif, PorcientoG, PorcientoP);
+  console.log('Llegue a Single Player');
   const dispatch = useDispatch();
   const {players} = useSelector(state => state.table);
 

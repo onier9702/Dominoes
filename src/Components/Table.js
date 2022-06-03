@@ -10,17 +10,18 @@ export const Table = () => {
 
     const dispatch = useDispatch();
     const {player} = useSelector(state => state.table);
-
-    const name = player[0].name;
-    console.log(name);
-    // const {name, JJ, G, P, Dif, PorcientoG, PorcientoP} = statistics;
-    // console.log(statistics);
-    // console.log(name, JJ, G, P, Dif, PorcientoG, PorcientoP);
+    
+    // console.log('Player Store: ' + player);
+    let name;
+    if ( player ) {
+        name = (player[0]) ? player[0].name : player.name
+        
+        console.log(name);
+    } else {
+        name = 'Name';
+    }
 
     const [frag, setFrag] = useState(false);
-
-
-
 
     // const handleWonGame = () => {
     //     dispatch(addWonGame(statistics,JJ,G,P));
@@ -30,24 +31,25 @@ export const Table = () => {
     //     dispatch(addLostGame(statistics,JJ,G,P));
     // }
 
-
-
-
     const handleClickButtonAdd = () => {
         setFrag(!frag);
     }
 
-    
-
   return (
     <div>
         <TablePlayers />
+
+        <h5 style={{marginLeft:20}} >Seleccione Jugador primero</h5>
+
         <button className="btn-primary" 
                 onClick={handleClickButtonAdd}
 
         >Agregar Juego</button>
         {
             (frag) &&   <div style={{display:'flex', flexDirection:'column',padding:20}}>
+                            {/* {
+                                (player.length > 0) ? <h5 style={{marginBottom:20}}>name</h5> : <p>Escoga jugador</p>
+                            } */}
                             <h5 style={{marginBottom:20}}>{name}</h5>
                             <div>
                                 <button className="button-table" 

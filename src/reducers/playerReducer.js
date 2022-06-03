@@ -4,7 +4,7 @@ import { types } from "../types/types";
 const initialState = {
 
     players: [],
-    player: {}
+    player: null,
 } 
 
 export const playerReducer = (state = initialState, action) => {
@@ -13,15 +13,16 @@ export const playerReducer = (state = initialState, action) => {
         case types.playerAdded:
             return {
                 ...state,
-                player: {...action.payload}
+                player: {...action.payload.player},
+                players: {...action.payload.players},
             }
+
         case types.playerChosen:
-            console.log(action.payload);
-            console.log('reducer called');
             return {
                 ...state,
                 player: {...action.payload},
             }
+
         case types.playerWon:
             return { 
                 ...state,
@@ -34,6 +35,7 @@ export const playerReducer = (state = initialState, action) => {
                     PorcientoP: (action.payload.P / (action.payload.JJ + 1)) * 100,
                 }
             }
+
         case types.playerLost:
             return {
                 ...state,
@@ -46,10 +48,17 @@ export const playerReducer = (state = initialState, action) => {
                     PorcientoP: ((action.payload.P + 1) / (action.payload.JJ + 1)) * 100,
                 }
             }
+
         case types.playersLoad:
             return {
                 ...state,
                 players: [...action.payload]
+            }
+        
+        case types.playerLogout:
+            return {
+                players: [],
+                player: {},
             }
     
         default:

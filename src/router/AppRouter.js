@@ -22,6 +22,7 @@ export const AppRouter = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const {loading} = useSelector(state => state.ui);  
+  
   useEffect(() => {
   
       onAuthStateChanged(auth, (user) => {

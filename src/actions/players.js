@@ -9,7 +9,7 @@ import { loadPlayersFromFireStore } from '../helpers/loadPlayers';
 
 
 
-export const addNewPlayer = ( name) => {
+export const addNewPlayer = ( name, list) => {
 
     return async(dispatch) => {
         
@@ -27,7 +27,7 @@ export const addNewPlayer = ( name) => {
 
         const newPlayer = {
             
-            name: name,
+            name,
             JJ: 0,
             G: 0,
             P: 0,
@@ -43,7 +43,7 @@ export const addNewPlayer = ( name) => {
 
         const playerWithId = {
             id,
-            name: name,
+            name,
             JJ: 0,
             G: 0,
             P: 0,
@@ -51,20 +51,27 @@ export const addNewPlayer = ( name) => {
             PorcientoG: 0.0,
             PorcientoP: 0.0,
         };
-        dispatch(addingNewPlayer(playerWithId) );
-        // console.log(uid,id);
+        const otherList = [];
+        list.map( player => otherList.push(player));
+
+        otherList.push(playerWithId);
+        console.log(otherList);
+        dispatch(addingNewPlayer(playerWithId,otherList) );
         dispatch( updatingPlayer(uid, id, playerWithId) );
-        dispatch(loadingPlayersList(uid));
         Swal.close();
 
     };
 
 };
 
-export const addingNewPlayer = ( player) => ({
+export const addingNewPlayer = ( player, players) => ({
 
     type: types.playerAdded,
-    payload: player,
+    payload: { 
+        player,
+        players,
+    } 
+
 
 });
 
@@ -125,17 +132,13 @@ export const rowPlayerChosen = (player) => ({
 //     }
 // });
 
-// export const loadPlayers = (players) => ({
-
-//     type: types.playersLoad,
-//     payload: players,
-// })
 
 export const loadingPlayersList = (uid) => {
 
     return async(dispatch) => {
 
         const list = await loadPlayersFromFireStore(uid);
+        console.log(list);
         dispatch( puttingPlayersOnStore(list) );
 
     };
