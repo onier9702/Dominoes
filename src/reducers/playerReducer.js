@@ -15,6 +15,13 @@ export const playerReducer = (state = initialState, action) => {
                 ...state,
                 player: {...action.payload}
             }
+        case types.playerChosen:
+            console.log(action.payload);
+            console.log('reducer called');
+            return {
+                ...state,
+                player: {...action.payload},
+            }
         case types.playerWon:
             return { 
                 ...state,

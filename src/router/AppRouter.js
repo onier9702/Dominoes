@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 import { Navigate, Route, Routes } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import { AuthRouter } from './AuthRouter';
 import { DashboardRoutes } from './DashboardRoutes';
@@ -10,7 +11,7 @@ import { PrivateRoute } from './PrivateRoute';
 
 import { PublicRoute } from './PublicRoute';
 import { loadingPlayersList } from '../actions/players';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { auth } from '../firebase/firebase-config';
 
@@ -19,7 +20,8 @@ export const AppRouter = () => {
 
   const dispatch = useDispatch();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
+
+  const {loading} = useSelector(state => state.ui);  
   useEffect(() => {
   
       onAuthStateChanged(auth, (user) => {
@@ -30,10 +32,16 @@ export const AppRouter = () => {
           setIsAuthenticated(false);
         }
       });
+      // setChecking(false);
  
-  }, [dispatch,setIsAuthenticated])
+  }, [dispatch, loading,setIsAuthenticated])
 
+  if (loading) {
+    return <div style={{height:'100vh',display:'flex',alignItems:'center',justifyContent:'center'}} ><h3 >Cargando...</h3></div> 
+  }
+    
 
+  
 
   return (
     <div >

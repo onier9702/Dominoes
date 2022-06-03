@@ -9,8 +9,11 @@ import { TablePlayers } from './TablePlayers';
 export const Table = () => {
 
     const dispatch = useDispatch();
-    const statistics = useSelector(state => state.table.player);
-    const {name, JJ, G, P, Dif, PorcientoG, PorcientoP} = statistics;
+    const {player} = useSelector(state => state.table);
+
+    const name = player[0].name;
+    console.log(name);
+    // const {name, JJ, G, P, Dif, PorcientoG, PorcientoP} = statistics;
     // console.log(statistics);
     // console.log(name, JJ, G, P, Dif, PorcientoG, PorcientoP);
 
@@ -27,9 +30,12 @@ export const Table = () => {
     //     dispatch(addLostGame(statistics,JJ,G,P));
     // }
 
-    // const handleClickButtonAdd = () => {
-    //     setFrag(!frag);
-    // }
+
+
+
+    const handleClickButtonAdd = () => {
+        setFrag(!frag);
+    }
 
     
 
@@ -37,19 +43,22 @@ export const Table = () => {
     <div>
         <TablePlayers />
         <button className="btn-primary" 
-                // onClick={handleClickButtonAdd}
+                onClick={handleClickButtonAdd}
 
-        >Add Juego</button>
-        {/* {
-            (frag) &&   <div>
-                            <button className="button-table" 
-                                    // onClick={handleWonGame} 
-                            >Agregar Juego Ganado</button>
-                            <button className="button-table" 
-                                    // onClick={handleLostGame} 
-                            >Agregar Juego Perdido</button>
+        >Agregar Juego</button>
+        {
+            (frag) &&   <div style={{display:'flex', flexDirection:'column',padding:20}}>
+                            <h5 style={{marginBottom:20}}>{name}</h5>
+                            <div>
+                                <button className="button-table" 
+                                        // onClick={handleWonGame} 
+                                >Agregar Juego Ganado</button>
+                                <button className="button-table" 
+                                        // onClick={handleLostGame} 
+                                >Agregar Juego Perdido</button>
+                            </div>
                         </div>
-        } */}
+        }
             
     </div>
   )

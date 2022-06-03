@@ -1,13 +1,23 @@
 
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { userClickPlayer } from '../actions/players';
 
 export const SinglePlayer = ({name, JJ, G, P, Dif, PorcientoG, PorcientoP}) => {
 
+  const dispatch = useDispatch();
+  const {players} = useSelector(state => state.table);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    const neccesaryName = e.target.innerText;
+    dispatch( userClickPlayer(players, neccesaryName) );
+  };
 
   return (
    
         <tr>
-            <th scope="row">{name}</th>
+            <th onClick={handleClick} scope="row">{name}</th>
             <td>{JJ}</td>
             <td>{G}</td>
             <td>{P}</td>

@@ -11,6 +11,7 @@ export const types = {
     uiFinishLoading: '[UI] Finish loading',
 
     playerAdded: '[Player] NewPlayer added',
+    playerChosen: '[Player Click]',
     playerWon: '[Player] Won game',
     playerLost: '[Player] Lost game',
 

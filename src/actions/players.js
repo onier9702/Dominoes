@@ -1,5 +1,5 @@
 
-
+import Swal from 'sweetalert2';
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore'; 
 
 import {auth, db} from '../firebase/firebase-config';
@@ -8,11 +8,21 @@ import { loadPlayersFromFireStore } from '../helpers/loadPlayers';
 
 
 
+
 export const addNewPlayer = ( name) => {
 
     return async(dispatch) => {
         
         
+        Swal.fire( {
+            title: 'Agregando...',
+            text: 'Please wait...',
+            allowOutsideClick: false,
+            didOpen: () => {
+              Swal.showLoading();
+            }
+          } );
+
         const {uid} = auth.currentUser;
 
         const newPlayer = {
@@ -45,6 +55,7 @@ export const addNewPlayer = ( name) => {
         // console.log(uid,id);
         dispatch( updatingPlayer(uid, id, playerWithId) );
         dispatch(loadingPlayersList(uid));
+        Swal.close();
 
     };
 
@@ -69,6 +80,24 @@ export const updatingPlayer = (uid, id, player) => {
     };
 
 };
+
+// Here one player was chosen by user click event
+export const userClickPlayer = (listPlayers ,name) => {
+
+    return (dispatch) => {
+        
+        const ok = listPlayers.filter( player => player.name === name );
+        console.log(ok);
+
+        dispatch( rowPlayerChosen(ok) );
+    }
+}
+
+export const rowPlayerChosen = (player) => ({
+
+    type: types.playerChosen,
+    payload: player,
+})
 
 // export const addWonGame = ( player, JJ, G, P ) => ({
 

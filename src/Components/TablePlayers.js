@@ -1,12 +1,25 @@
 
-import React from 'react';
+import Swal from 'sweetalert2';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { SinglePlayer } from './SinglePlayer';
 
 export const TablePlayers = () => {
 
   const {players} = useSelector(state => state.table);
+
+  useEffect(() => {
+  
+    Swal.fire( {
+      title: 'Para Agregar juego a un Jugador',
+      text: 'Usted debe seleccionar haciendo Click en un jugador de la Tabla y despues Agregar Juego',
+      allowOutsideClick: false,
+      
+    } )
+      
     
+  }, [])
+  
   return (
 
       <div className="table">

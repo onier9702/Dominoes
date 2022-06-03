@@ -13,4 +13,12 @@ export const removeError = () => ({
     type: types.uiRemoveError,
 });
 
+export const startLoadingPage = () => ({
 
+    type: types.uiStartLoading,
+});
+
+export const finishLoadingPage = () => ({
+
+    type: types.uiFinishLoading,
+});
