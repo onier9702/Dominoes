@@ -4,7 +4,7 @@ import { types } from "../types/types";
 const initialState = {
 
     players: [],
-    player: null,
+    player: {},
 } 
 
 export const playerReducer = (state = initialState, action) => {
@@ -14,19 +14,20 @@ export const playerReducer = (state = initialState, action) => {
             return {
                 ...state,
                 player: {...action.payload.player},
-                players: {...action.payload.players},
+                players: [...action.payload.players],
             }
 
         case types.playerChosen:
             return {
                 ...state,
-                player: {...action.payload},
+                player: action.payload,
             }
 
         case types.playerWon:
             return { 
                 ...state,
                 player: {
+                    ...action.payload,
                     JJ: action.payload.JJ + 1,
                     G: action.payload.G + 1,
                     P: action.payload.P,
@@ -40,6 +41,7 @@ export const playerReducer = (state = initialState, action) => {
             return {
                 ...state,
                 player: {  
+                    ...action.payload,
                     JJ: action.payload.JJ + 1,
                     G: action.payload.G,
                     P: action.payload.P + 1,
@@ -55,6 +57,12 @@ export const playerReducer = (state = initialState, action) => {
                 players: [...action.payload]
             }
         
+        case types.playersRefresh:
+            return {
+                ...state,
+                players: [...action.payload]
+            }
+
         case types.playerLogout:
             return {
                 players: [],

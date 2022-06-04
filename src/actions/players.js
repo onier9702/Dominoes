@@ -55,9 +55,11 @@ export const addNewPlayer = ( name, list) => {
         list.map( player => otherList.push(player));
 
         otherList.push(playerWithId);
-        console.log(otherList);
+        console.log('List with player added ' + otherList);
         dispatch(addingNewPlayer(playerWithId,otherList) );
-        dispatch( updatingPlayer(uid, id, playerWithId) );
+        setTimeout(() => {
+            dispatch( updatingPlayer(uid, id, playerWithId) );
+        }, 1000);
         Swal.close();
 
     };
@@ -92,11 +94,11 @@ export const updatingPlayer = (uid, id, player) => {
 export const userClickPlayer = (listPlayers ,name) => {
 
     return (dispatch) => {
-        
+        // console.log('listPLayers: ' + listPlayers);
         const ok = listPlayers.filter( player => player.name === name );
-        console.log(ok);
-
-        dispatch( rowPlayerChosen(ok) );
+        // console.log('ok: ' + {ok});
+        // console.log(ok.id);
+        dispatch( rowPlayerChosen(ok[0]) );
     }
 }
 
@@ -106,32 +108,36 @@ export const rowPlayerChosen = (player) => ({
     payload: player,
 })
 
-// export const addWonGame = ( player, JJ, G, P ) => ({
+export const addWonGame = ( player ) => ({
 
-//     type: types.playerWon,
-//     payload: {
+    type: types.playerWon,
+    payload: player,
+})
+
+export const addLostGame = ( player ) => ({
+
+    type: types.playerLost,
+    payload: player,
+});
+
+export const masterPiece = ( id, players, newPlayer ) => {
+
+    return (dispatch) => {
     
-//         ...player,
-//         JJ,
-//         G,
-//         P,
+        const newList = players.filter( player => player.id !== id  );
+        newList.push(newPlayer);
+        // const thisList = newList.push(newPlayer);
         
-//     }
-// })
+        dispatch(refreshStore(newList));
+    };
 
-// export const addLostGame = ( player, JJ, G, P ) => ({
+};
 
-//     type: types.playerLost,
-//     payload: {
-        
-//         ...player,
-//         JJ,
-//         G,
-//         P,
-    
-//     }
-// });
+export const refreshStore = (players) => ({
+    type: types.playersRefresh,
+    payload: players,
 
+});
 
 export const loadingPlayersList = (uid) => {
 

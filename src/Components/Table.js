@@ -1,7 +1,8 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addLostGame, addWonGame } from '../actions/players';
+import Swal from 'sweetalert2';
+import { addLostGame, addWonGame, masterPiece } from '../actions/players';
 
 import '../styles/Table.css';
 import { TablePlayers } from './TablePlayers';
@@ -9,100 +10,72 @@ import { TablePlayers } from './TablePlayers';
 export const Table = () => {
 
     const dispatch = useDispatch();
-    const {player} = useSelector(state => state.table);
+    const {players, player} = useSelector(state => state.table);
+    // const {players} = useSelector(state => state.table);
+
+    const xxx = (player[0]) ? player[0] : player;
     
-    // console.log('Player Store: ' + player);
+    // const index = players.indexOf(player[0] || player);
+    // console.log(index);
+
+    // console.log(xxx.id, xxx.JJ, xxx.G, xxx.P, xxx.PorcientoG, xxx.PorcientoP, xxxDif, xxx.name);
+  
+
     let name;
     if ( player ) {
         name = (player[0]) ? player[0].name : player.name
         
-        console.log(name);
+        // console.log(name);
     } else {
         name = 'Name';
     }
 
-    const [frag, setFrag] = useState(false);
 
-    // const handleWonGame = () => {
-    //     dispatch(addWonGame(statistics,JJ,G,P));
+    const handleWonGame = (e) => {
+        e.preventDefault();
+        if (player[0] || player.name) {
+            dispatch(addWonGame( player[0] || player ));
+            setTimeout(() => {
+                dispatch(masterPiece( xxx.id, players, player));
+            }, 2500);
+        } else {
+            Swal.fire('Recuerde','Debe seleccionar Jugador', 'warning');
+        }
         
-    // }
-    // const handleLostGame = () => {
-    //     dispatch(addLostGame(statistics,JJ,G,P));
-    // }
-
-    const handleClickButtonAdd = () => {
-        setFrag(!frag);
     }
+    const handleLostGame = (e) => {
+        e.preventDefault();
+        if (player[0] || player.name) {
+            dispatch(addLostGame( player[0] || player ));
+            dispatch(masterPiece( xxx.id, players, player));
+        } else {
+            Swal.fire('Recuerde','Debe seleccionar Jugador', 'warning');
+        }
+    }
+
+  
 
   return (
     <div>
         <TablePlayers />
 
-        <h5 style={{marginLeft:20}} >Seleccione Jugador primero</h5>
-
-        <button className="btn-primary" 
-                onClick={handleClickButtonAdd}
-
-        >Agregar Juego</button>
-        {
-            (frag) &&   <div style={{display:'flex', flexDirection:'column',padding:20}}>
-                            {/* {
-                                (player.length > 0) ? <h5 style={{marginBottom:20}}>name</h5> : <p>Escoga jugador</p>
-                            } */}
-                            <h5 style={{marginBottom:20}}>{name}</h5>
-                            <div>
-                                <button className="button-table" 
-                                        // onClick={handleWonGame} 
-                                >Agregar Juego Ganado</button>
-                                <button className="button-table" 
-                                        // onClick={handleLostGame} 
-                                >Agregar Juego Perdido</button>
-                            </div>
-                        </div>
-        }
+        <h5 style={{marginLeft:20}} >Seleccione Jugador en la Tabla</h5>
+        
+        <div style={{display:'flex', flexDirection:'column',padding:20}}>
+            <h5 style={{marginBottom:20}}>{name}</h5>
+            <div>
+                <button className="button-table" 
+                        onClick={handleWonGame} 
+                >Agregar Juego Ganado a {name}</button>
+                <button className="button-table" 
+                        onClick={handleLostGame} 
+                >Agregar Juego Perdido a {name} </button>
+            </div>
+        </div>
+        
             
     </div>
   )
 }
 
-
-
-
-                {/* <div className="table">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Jugador</th>
-                                <th scope="col">JJ</th>
-                                <th scope="col">G</th>
-                                <th scope="col">P</th>
-                                <th scope="col">DIF</th>
-                                <th scope="col">%G</th>
-                                <th scope="col">%P</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">{name}</th>
-                                <td>{JJ}</td>
-                                <td>{G}</td>
-                                <td>{P}</td>
-                                <td>{Dif}</td>
-                                <td>{PorcientoG}</td>
-                                <td>{PorcientoP}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table> */}
                     

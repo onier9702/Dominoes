@@ -17,6 +17,7 @@ export const types = {
     playerLogout: '[Player] Logout',
 
     playersLoad: '[Players] Load players',
+    playersRefresh: '[Players] Refresh',
 
 
 

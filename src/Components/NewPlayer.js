@@ -24,9 +24,9 @@ export const NewPlayer = () => {
     if ( name.trim().length < 2 ){
       Swal.fire('Error','Debe contener al menos dos letras','info');
     } else {
+      reset();
       dispatch( addNewPlayer(name,listPlayers) );
     }
-    reset();
   };
 
 
