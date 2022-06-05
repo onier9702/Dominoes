@@ -1,0 +1,31 @@
+
+.ranking{
+    padding: 15px;
+}
+
+.ranking .motivation{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px;
+
+}
+
+.ranking .motivation h5{
+
+}
+
+.ranking .motivation h4{
+    color: blue;
+}
+
+.ranking .information {
+    border: 1px solid black;
+    box-shadow: 3.5px 3.5px grey;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+
+

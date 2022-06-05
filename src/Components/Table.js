@@ -2,7 +2,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import { addLostGame, addWonGame, masterPiece } from '../actions/players';
+import { addLostGame, addWonGame, masterPiece, uploadingGame } from '../actions/players';
+import { auth } from '../firebase/firebase-config';
 
 import '../styles/Table.css';
 import { TablePlayers } from './TablePlayers';
@@ -14,7 +15,7 @@ export const Table = () => {
     // const {players} = useSelector(state => state.table);
 
     const {id} = player;
-    
+    const {uid} = auth.currentUser;
 
     let name;
     if ( player ) {
@@ -29,6 +30,7 @@ export const Table = () => {
         if ( player.name) {
             dispatch(addWonGame( player ));
             dispatch(masterPiece( id, players, player, 'G'));
+            dispatch( uploadingGame(uid, id, player, 'G') );
             
         } else {
             Swal.fire('Recuerde','Debe seleccionar Jugador', 'warning');
@@ -42,6 +44,7 @@ export const Table = () => {
         if ( player.name ) {
             dispatch(addLostGame( player ));
             dispatch(masterPiece( id, players, player, 'P'));
+            dispatch( uploadingGame(uid, id, player, 'P' ) );
         } else {
             Swal.fire('Recuerde','Debe seleccionar Jugador', 'warning');
         }
@@ -63,10 +66,10 @@ export const Table = () => {
                 <div>
                     <button className="button-table" 
                             onClick={handleWonGame} 
-                            >Agregar Juego Ganado a {name}</button>
+                            >+ Ganado</button>
                     <button className="button-table" 
                             onClick={handleLostGame} 
-                            >Agregar Juego Perdido a {name} </button>
+                            >+ Perdido</button>
                 </div>
             </div>
         </div>

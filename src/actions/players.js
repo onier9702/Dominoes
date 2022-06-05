@@ -81,14 +81,65 @@ export const updatingPlayer = (uid, id, player) => {
 
     return async(dispatch) => {
 
-
+        Swal.fire( {
+            title: 'Guardando...',
+            text: 'Please wait...',
+            allowOutsideClick: false,
+            didOpen: () => {
+              Swal.showLoading();
+            }
+                      } );
         const playerRef = doc(db, uid, id);
 
         await updateDoc(playerRef, player);
-
+        Swal.close();
+        
     };
 
 };
+
+export const uploadingGame = (uid, id, player, condition) => {
+
+    return async(dispatch) => {
+
+        Swal.fire( {
+            title: 'Guardando...',
+            text: 'Please wait...',
+            allowOutsideClick: false,
+            didOpen: () => {
+              Swal.showLoading();
+            }
+        } );
+
+        const notMutatingPlayer = {...player};
+
+        let newPlayer;
+        if (condition === 'G'){
+            newPlayer = {
+                ...notMutatingPlayer,
+                JJ: notMutatingPlayer.JJ +1,
+                G: notMutatingPlayer.G +1,
+                Dif: (notMutatingPlayer.G +1) - notMutatingPlayer.P,
+                PorcientoG: ((notMutatingPlayer.G +1)/ (notMutatingPlayer.JJ +1)) * 100,
+                PorcientoP: (notMutatingPlayer.P / (notMutatingPlayer.JJ +1)) * 100,
+            }
+        } else {
+            newPlayer = {
+                ...notMutatingPlayer,
+                JJ: notMutatingPlayer.JJ +1,
+                P: notMutatingPlayer.P +1,
+                Dif: notMutatingPlayer.G - (notMutatingPlayer.P + 1),
+                PorcientoG: (notMutatingPlayer.G / (notMutatingPlayer.JJ +1)) * 100,
+                PorcientoP: ((notMutatingPlayer.P + 1) / (notMutatingPlayer.JJ +1)) * 100,
+            }
+        }
+
+        // Updating player on FireStore
+        const playerRef = doc(db, uid, id);
+        await updateDoc(playerRef, newPlayer);
+        Swal.close();
+    };
+} 
 
 // Here one player was chosen by user click event
 export const userClickPlayer = (listPlayers ,name) => {
@@ -175,7 +226,7 @@ export const puttingPlayersOnStore = (players) => ({
 
 });
 
-// export const handleSave = ( players ) => {
+// export const savingJournal = ( players ) => {
 
 //     return async(dispatch) => {
 
@@ -189,8 +240,10 @@ export const puttingPlayersOnStore = (players) => ({
 //           } );
 
 //         const {uid} = auth.currentUser;
+//         const iterableList = [];
+//         players.forEach( player => iterableList.push(player) );
 
-//         players.forEach( player => {
+//         iterableList.forEach( player => {
 
 //             const playerRef = doc(db, uid, player.id);
 //             await updateDoc(playerRef, player);

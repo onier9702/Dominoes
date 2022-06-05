@@ -42,3 +42,16 @@
 .readme .button-table{
     border-radius: 7px;
 }
+
+@media (max-width: 450px) {
+    .button-table {
+        color: black;
+        height: 38px;
+        font-size: 12px;
+        font-weight: bold;
+        padding-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+

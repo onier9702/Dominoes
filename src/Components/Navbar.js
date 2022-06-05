@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { startLogout } from '../actions/auth';
+import { savingJournal } from '../actions/players';
 import '../styles/Navbar.css';
 
 
@@ -17,11 +18,11 @@ export const Navbar = () => {
         dispatch( startLogout() );
     };
 
-    const handleSave = (e) => {
-        e.preventDefault();
-        // dispatch( savingJournal( players ) );
+    // const handleSave = (e) => {
+    //     e.preventDefault();
+    //     dispatch( savingJournal( players ) );
 
-    };
+    // };
 
   return (
     <div>
@@ -37,13 +38,13 @@ export const Navbar = () => {
                     <li>
                         <Link  to="/dashboard/newplayer" className="link" >AgregarJugador</Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <button
                             type="button"
                             className="btn-save"
                             onClick={handleSave}
                         >Guardar</button>
-                    </li>
+                    </li> */}
                     <li >
                         <button
                             type="button"

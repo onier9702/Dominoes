@@ -18,7 +18,8 @@ export const NewPlayer = () => {
   });
 
   const {name} = formValues;
-
+  
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     if ( name.trim().length < 2 ){
