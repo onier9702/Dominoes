@@ -8,6 +8,7 @@ export const SinglePlayer = ({name, JJ, G, P, Dif, PorcientoG, PorcientoP}) => {
   const dispatch = useDispatch();
   const {players} = useSelector(state => state.table);
 
+
   // const newNote = [];
   // list.map( (elem) => newNote.push(elem) );
 
@@ -25,8 +26,8 @@ export const SinglePlayer = ({name, JJ, G, P, Dif, PorcientoG, PorcientoP}) => {
             <td>{G}</td>
             <td>{P}</td>
             <td>{Dif}</td>
-            <td>{PorcientoG}</td>
-            <td>{PorcientoP}</td>
+            <td>{PorcientoG.toFixed(2)}</td>
+            <td>{PorcientoP.toFixed(2)}</td>
         </tr>
   )
 }

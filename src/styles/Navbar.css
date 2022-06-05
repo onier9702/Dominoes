@@ -39,6 +39,12 @@
 .logout:hover{
     color: #00000F;
 }
-
-
+.btn-save{
+    border: none;
+    background-color: transparent;
+    color: #0bff;
+}
+.btn-save:hover{
+    color: black;
+}
 

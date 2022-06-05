@@ -25,3 +25,20 @@
     color: #212529;
 } 
 
+.readme {
+    border: 1.5px solid grey;
+    box-shadow: 3.5px 3.5px #495057;
+    margin-left: 15px;
+    padding: 5px;
+    width: fit-content;
+}
+.readme h4 {
+    color: blue;
+    padding: 5px;
+}
+.readme h5{
+    padding: 5px;
+}
+.readme .button-table{
+    border-radius: 7px;
+}

@@ -55,7 +55,7 @@ export const addNewPlayer = ( name, list) => {
         list.map( player => otherList.push(player));
 
         otherList.push(playerWithId);
-        console.log('List with player added ' + otherList);
+        // console.log('List with player added ' + otherList);
         dispatch(addingNewPlayer(playerWithId,otherList) );
         setTimeout(() => {
             dispatch( updatingPlayer(uid, id, playerWithId) );
@@ -120,31 +120,48 @@ export const addLostGame = ( player ) => ({
     payload: player,
 });
 
-export const masterPiece = ( id, players, newPlayer ) => {
+export const masterPiece = ( id, players, player, condition ) => {
 
     return (dispatch) => {
     
-        const newList = players.filter( player => player.id !== id  );
-        newList.push(newPlayer);
-        // const thisList = newList.push(newPlayer);
+        const index = players.findIndex( book => book.id === id );
         
-        dispatch(refreshStore(newList));
+        const newList = [];
+        players.map( player => newList.push(player) );
+        
+        if (  index !== -1 ) {
+            if (condition === 'G'){
+                newList[index] = {
+                    ...player,
+                    JJ: player.JJ + 1,
+                    G: player.G + 1,
+                    Dif: ((player.G + 1) - player.P),
+                    PorcientoG: ((player.G + 1) / (player.JJ + 1)) * 100,
+                    PorcientoP: (player.P / (player.JJ + 1)) * 100,
+                };
+            } else {
+                newList[index] = {
+                    ...player,
+                    JJ: player.JJ + 1,
+                    P: player.P + 1,
+                    Dif: (player.G  - (player.P + 1)),
+                    PorcientoG: (player.G / (player.JJ + 1)) * 100,
+                    PorcientoP: ((player.P + 1) / (player.JJ + 1)) * 100,
+                };
+            }
+        }
+        dispatch(puttingPlayersOnStore(newList));
     };
 
 };
 
-export const refreshStore = (players) => ({
-    type: types.playersRefresh,
-    payload: players,
 
-});
 
 export const loadingPlayersList = (uid) => {
 
     return async(dispatch) => {
 
         const list = await loadPlayersFromFireStore(uid);
-        console.log(list);
         dispatch( puttingPlayersOnStore(list) );
 
     };
@@ -158,3 +175,28 @@ export const puttingPlayersOnStore = (players) => ({
 
 });
 
+// export const handleSave = ( players ) => {
+
+//     return async(dispatch) => {
+
+//         Swal.fire( {
+//             title: 'Guardando...',
+//             text: 'Please wait...',
+//             allowOutsideClick: false,
+//             didOpen: () => {
+//               Swal.showLoading();
+//             }
+//           } );
+
+//         const {uid} = auth.currentUser;
+
+//         players.forEach( player => {
+
+//             const playerRef = doc(db, uid, player.id);
+//             await updateDoc(playerRef, player);
+//         }  )
+
+//         Swal.close();
+
+//     }
+// };

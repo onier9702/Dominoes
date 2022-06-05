@@ -56,12 +56,6 @@ export const playerReducer = (state = initialState, action) => {
                 ...state,
                 players: [...action.payload]
             }
-        
-        case types.playersRefresh:
-            return {
-                ...state,
-                players: [...action.payload]
-            }
 
         case types.playerLogout:
             return {
