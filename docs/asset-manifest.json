@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/dominoes/static/css/main.24d8f704.css",
+    "main.js": "/dominoes/static/js/main.5fb7c8ca.js",
+    "index.html": "/dominoes/index.html",
+    "main.24d8f704.css.map": "/dominoes/static/css/main.24d8f704.css.map",
+    "main.5fb7c8ca.js.map": "/dominoes/static/js/main.5fb7c8ca.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.24d8f704.css",
+    "static/js/main.5fb7c8ca.js"
+  ]
+}
