@@ -49,7 +49,7 @@ export const AppRouter = () => {
 
         <Routes >
 
-          <Route path="/" element={<Navigate to="/auth" />} />
+            <Route path="/" element={<Navigate to="/auth" />} />
 
             <Route path="dashboard/*" element={ 
               <PrivateRoute isAuthenticated={isAuthenticated}>

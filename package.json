@@ -1,4 +1,5 @@
-{
+{ 
+  "homepage": "https://onier9702.github.io/dominoes",
   "name": "dominoes",
   "version": "0.1.0",
   "private": true,
