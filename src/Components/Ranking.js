@@ -49,7 +49,10 @@ export const Ranking = () => {
 
         <div className="motivation" >
           <h5 >El Tanke de los Tankes es </h5>
-          <h4 >{array[0].name}</h4>
+          {
+            (array[0]) && <h4 >{array[0].name}</h4>
+          }
+          
         </div>
 
         <table class="table">
