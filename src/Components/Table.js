@@ -6,6 +6,7 @@ import { addLostGame, addWonGame, deletePlayer, masterPiece, uploadingGame } fro
 import { auth } from '../firebase/firebase-config';
 
 import '../styles/Table.css';
+import { ModalEdit } from './ModalEdit';
 import { TablePlayers } from './TablePlayers';
 
 export const Table = () => {
@@ -54,6 +55,9 @@ export const Table = () => {
 
     };
 
+    // const handleRestart = () => {
+    //     console.log('handleRestart');
+    // }
   
 
   return (
@@ -61,7 +65,7 @@ export const Table = () => {
         <TablePlayers />
 
         <div className="readme" >
-            <h4 >Para Modificar</h4>
+            {/* <h4 >Para Modificar</h4> */}
             <h5 >Seleccione Jugador en la Tabla</h5>
 
         
@@ -78,13 +82,28 @@ export const Table = () => {
             </div>
         </div>
         {
+            (player.id) && <ModalEdit key={player.id} player={player}/>  
+        }
+
+        {
             (player.id) && <button 
                                 className="btn btn-danger"
                                 onClick={handleDelete}
                             >
-                                {`Eliminar a ${name}`}
+                                <i className="fas fa-trash" >  {name}</i>
                             </button>
         }
+
+        {/* {
+            (player.id) && 
+                            <button 
+                                className="btn-restablished"
+                                onClick={handleRestart}
+                            >
+                                Editar a {name}
+                            </button>
+        } */}
+
         
         
             

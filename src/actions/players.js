@@ -77,6 +77,42 @@ export const addingNewPlayer = ( player, players) => ({
 
 });
 
+export const creatingPlayerToUpdate = ( uid, id, name, G, P, players ) => {
+
+    return (dispatch) => {
+        const player = {
+            JJ: G + P,
+            G,
+            P,
+            Dif: G - P,
+            PorcientoG: (G/(G+P))*100,
+            PorcientoP: (P/(G+P))*100,
+            id,
+            name,
+        };
+        console.log('Player: ' + player);
+
+        const iterableList = [];
+        players.map(player => iterableList.push(player));
+        const finalList = iterableList.filter(player => player.id !== id);
+        finalList.push(player);
+
+        dispatch(updatingPlayer(uid, id, player));
+        dispatch(updatePlayerEdited(player, finalList));
+
+
+    };
+};
+
+export const updatePlayerEdited = ( player, players ) => ({
+    type: types.playerRefresh,
+    payload: {
+        player,
+        players,
+    }
+
+});
+
 export const updatingPlayer = (uid, id, player) => {
 
     return async(dispatch) => {
@@ -251,12 +287,12 @@ export const deletePlayerFromStore = () => ({
     type: types.playerDelete,
 })
 
-// export const savingJournal = ( players ) => {
+// export const restartPlayers = ( uid ,players ) => {
 
 //     return async(dispatch) => {
 
 //         Swal.fire( {
-//             title: 'Guardando...',
+//             title: 'Restableciendo...',
 //             text: 'Please wait...',
 //             allowOutsideClick: false,
 //             didOpen: () => {
@@ -264,7 +300,6 @@ export const deletePlayerFromStore = () => ({
 //             }
 //           } );
 
-//         const {uid} = auth.currentUser;
 //         const iterableList = [];
 //         players.forEach( player => iterableList.push(player) );
 

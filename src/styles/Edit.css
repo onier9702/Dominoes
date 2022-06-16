@@ -1,0 +1,34 @@
+
+.cont-edit {
+    margin-left: 15px;
+    border: 1.5px solid grey;
+    box-shadow: 3.5px 3.5px #495057;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 50%;
+}
+.secondDiv {
+    padding: 15px;
+}
+.form-edit{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px;
+    
+}
+input{
+    width: 60px;
+}
+.label1{
+    margin-right: 10px;
+}
+.guardar-cambios {
+    background-color: aquamarine;
+    color: black;
+    border: none;
+    border-radius: 7px;
+    font-weight: 100px;
+    width: 100%;
+}

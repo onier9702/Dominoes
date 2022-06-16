@@ -57,6 +57,13 @@ export const playerReducer = (state = initialState, action) => {
                 players: [...action.payload]
             }
         
+        case types.playerRefresh:
+            return {
+                ...state,
+                players: [...action.payload.players],
+                player: {...action.payload.player}
+            }
+
         case types.playerDelete:
             return {
                 ...state,

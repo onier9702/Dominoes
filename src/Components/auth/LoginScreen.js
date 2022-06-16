@@ -33,7 +33,7 @@ export const LoginScreen = () => {
         <div className="login"> */}
           <div className="container">
 
-            <h3 className="auth__tittle">Login</h3>
+            <h3 >Login</h3>
       
             <form className="content animate__animated animate__fadeIn animate__faster" 
                   onSubmit={handleSubmit}

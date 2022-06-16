@@ -42,7 +42,7 @@ export const NewPlayer = () => {
         <form onSubmit={handleSubmit}>
           <input
               type="text" 
-              placeholder="Escriba su Nombre"
+              placeholder="Su Nombre"
               autoComplete="off"
               autoCapitalize="on"
               name="name"
