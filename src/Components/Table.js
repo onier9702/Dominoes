@@ -2,7 +2,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import { addLostGame, addWonGame, masterPiece, uploadingGame } from '../actions/players';
+import { addLostGame, addWonGame, deletePlayer, masterPiece, uploadingGame } from '../actions/players';
 import { auth } from '../firebase/firebase-config';
 
 import '../styles/Table.css';
@@ -12,7 +12,6 @@ export const Table = () => {
 
     const dispatch = useDispatch();
     const {players, player} = useSelector(state => state.table);
-    // const {players} = useSelector(state => state.table);
 
     const {id} = player;
     const {uid} = auth.currentUser;
@@ -23,7 +22,7 @@ export const Table = () => {
         
     } else {
         name = 'Name';
-    }
+    };
 
     const handleWonGame = (e) => {
         e.preventDefault();
@@ -34,9 +33,9 @@ export const Table = () => {
             
         } else {
             Swal.fire('Recuerde','Debe seleccionar Jugador', 'warning');
-        }
+        };
         
-    }
+    };
 
 
     const handleLostGame = (e) => {
@@ -47,8 +46,13 @@ export const Table = () => {
             dispatch( uploadingGame(uid, id, player, 'P' ) );
         } else {
             Swal.fire('Recuerde','Debe seleccionar Jugador', 'warning');
-        }
-    }
+        };
+    };
+
+    const handleDelete = () => {
+        dispatch( deletePlayer(uid, id) );
+
+    };
 
   
 
@@ -62,7 +66,7 @@ export const Table = () => {
 
         
             <div style={{display:'flex', flexDirection:'column',padding:20}}>
-                <h5 style={{marginBottom:20}}>{name}</h5>
+                {(name) && <h5 style={{marginBottom:20}}>{name}</h5> }
                 <div>
                     <button className="button-table" 
                             onClick={handleWonGame} 
@@ -73,6 +77,15 @@ export const Table = () => {
                 </div>
             </div>
         </div>
+        {
+            (player.id) && <button 
+                                className="btn btn-danger"
+                                onClick={handleDelete}
+                            >
+                                {`Eliminar a ${name}`}
+                            </button>
+        }
+        
         
             
     </div>

@@ -15,6 +15,7 @@ export const types = {
     playerWon: '[Player] Won game',
     playerLost: '[Player] Lost game',
     playerLogout: '[Player] Logout',
+    playerDelete: '[Player] Deleted',
 
     playersLoad: '[Players] Load players',
     playersRefresh: '[Players] Refresh',

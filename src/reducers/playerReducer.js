@@ -56,6 +56,15 @@ export const playerReducer = (state = initialState, action) => {
                 ...state,
                 players: [...action.payload]
             }
+        
+        case types.playerDelete:
+            return {
+                ...state,
+                players: state.players.filter( 
+                    player => (player.id !== state.player.id)
+                ),
+                player: {}
+            }
 
         case types.playerLogout:
             return {

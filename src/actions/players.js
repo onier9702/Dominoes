@@ -1,6 +1,6 @@
 
 import Swal from 'sweetalert2';
-import { collection, addDoc, updateDoc, doc } from 'firebase/firestore'; 
+import { collection, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'; 
 
 import {auth, db} from '../firebase/firebase-config';
 import { types } from "../types/types";
@@ -225,6 +225,31 @@ export const puttingPlayersOnStore = (players) => ({
     payload: players,
 
 });
+
+export const deletePlayer = (uid, id) => {
+
+    return async(dispatch) => {
+
+        Swal.fire( {
+            title: 'Borrando...',
+            text: 'Please wait...',
+            allowOutsideClick: false,
+            didOpen: () => {
+              Swal.showLoading();
+            }
+        } );
+
+        await deleteDoc(doc(db, uid, id));
+        dispatch( deletePlayerFromStore() );
+
+        Swal.close();
+
+    };
+};
+
+export const deletePlayerFromStore = () => ({
+    type: types.playerDelete,
+})
 
 // export const savingJournal = ( players ) => {
 
