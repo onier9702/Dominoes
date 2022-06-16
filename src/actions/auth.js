@@ -18,7 +18,9 @@ export const startRegister = ( name, email, password  ) => {
                 dispatch(startLogin(name,email,password));
             })
             .catch((error) => {
+                // Swal.fire('Error',error.message,'error');
                 console.log(error.message);
+                dispatch(finishLoadingPage());
             });
 
     }
@@ -34,11 +36,7 @@ export const startLogin = ( name ,email, password ) => {
             .then(({user}) => {
                 dispatch( loadingPlayersList(user.uid) );
                 dispatch(finishLoadingPage());
-                setTimeout(() => {
-                    dispatch(login(user.uid, name));
-                }, 2500);
-
-                // console.log(name);
+                dispatch(login(user.uid, name));
             })
             .catch((error) => {
                 console.log(error.message);

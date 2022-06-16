@@ -1,8 +1,9 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import validator from 'validator';
+import Swal from 'sweetalert2';
 
 import { useForm } from '../../hooks/useForm';
 import { removeError, setError } from '../../actions/ui';
@@ -17,10 +18,10 @@ export const RegisterScreen = () => {
 
     const [formValue, handleInputChange] = useForm( {
 
-        name: 'Nombre',
-        email: 'email@gmail.com',
-        password: 'Contrasena',
-        password2: 'Contrasena',
+        name: '',
+        email: '',
+        password: '',
+        password2: '',
     } )
 
     const {name, email, password, password2 } = formValue;
@@ -42,18 +43,27 @@ export const RegisterScreen = () => {
         } else if (!(validator.isEmail(email))){
             dispatch(setError('Email is not valid'));
             return false;
-        } else if (password !== password2 || password.length < 5){
-            dispatch(setError('Password should contains at least 5 characters and match each other'));
+        } else if (password !== password2 || password.length < 6){
+            dispatch(setError('El Password debe de tener al menos 6 caracteres y coincidir'));
             return false;
         }
         dispatch(removeError());
         return true;
     }
 
+    useEffect(() => {
+        Swal.fire('Como funciona:',
+            '!!! Con solo un registro le basta para crear su liga de dominoes y con ese correo y contrasena todos los jugadores pueden acceder o logearse !!!',
+            'info'
+        );
+      
+    }, [])
+    
+    
   return (
 
     <>  
-        <div className="login">
+       
             <div className="container">
                 <h3 className="tittle">Register</h3>
                 <form   className="content animate__animated animate__fadeIn animate__faster"
@@ -66,7 +76,7 @@ export const RegisterScreen = () => {
                     <input  
                         type="text"
                         name="name"
-                        placeholder="Name"
+                        placeholder="Nombre"
                         autoComplete="off"
                         className="auth__input"
                         value={name}
@@ -75,13 +85,13 @@ export const RegisterScreen = () => {
                     <input  
                         type="text"
                         name="email"
-                        placeholder="Email"
+                        placeholder="correo@gmail.com"
                         autoComplete="off"
                         className="auth__input"
                         value={email}
                         onChange={handleInputChange}
                     />
-            
+                
                     <input  
                         type="password"
                         name="password"
@@ -93,7 +103,7 @@ export const RegisterScreen = () => {
                     <input  
                         type="password"
                         name="password2"
-                        placeholder="Confirm"
+                        placeholder="Confirma"
                         className="auth__input"
                         value={password2}
                         onChange={handleInputChange}
@@ -104,13 +114,12 @@ export const RegisterScreen = () => {
                         onClick={registered}
                         // disabled={true}
                     >Register</button>
-            
+                
                     <div className="link">
-                      <Link to="/auth/" className="link">Go Login</Link>
+                    <Link to="/auth/" className="link">Go Login</Link>
                     </div>
                 </form>             
             </div>
-        </div>
     </>
   )
 }

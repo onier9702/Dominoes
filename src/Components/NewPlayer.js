@@ -37,7 +37,6 @@ export const NewPlayer = () => {
         <h2>Nuevo Jugador</h2>
         <hr />
 
-        <p>Aqui agrege un nuevo jugador ...</p>
         <form onSubmit={handleSubmit}>
           <input
               type="text" 

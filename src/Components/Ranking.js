@@ -11,7 +11,7 @@ export const Ranking = () => {
 
     // const dispatch = useDispatch();
     const {players} = useSelector( state => state.table );
-    const {uid} = auth.currentUser;
+    // const {uid} = auth.currentUser;
 
     let minAmount = 0;
     const iterableList = [];
@@ -36,6 +36,21 @@ export const Ranking = () => {
 
     // console.table(test);
     let array = test.sort( (s1, s2)=> s2.G - s1.G  );
+
+    for (let i = 1; i < len; i++) {
+
+      if ( array[i-1].G === array[i].G ){
+
+        if (array[i-1].Dif < array[i].Dif){
+          let borrow = array[i-1];
+          array[i-1] = array[i];
+          array[i] = borrow;
+        }
+      }
+    };
+
+    console.log(array);
+    // let defin = array.sort( (s1, s2) => s2.PorcientoG - s1.PorcientoG );
 
     // console.table(array);
   
@@ -78,10 +93,11 @@ export const Ranking = () => {
         </table>
 
         <div className="information">
-            <p> !!! Para que un jugador pueda rankear debe de haber jugado 
-                al menos la mitad de los partidos del jugador con mas 
-                juegos jugados !!!
-            </p>
+          <h4>NOTA</h4>
+          <p> !!! Para que un jugador pueda rankear debe de haber jugado 
+              al menos la mitad de los partidos del jugador con mas 
+              juegos jugados !!!
+          </p>
         </div>
 
     </div> 

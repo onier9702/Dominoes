@@ -1,47 +1,47 @@
 
-.login {
+
+.container{
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
 }
-.login .container{
-    /* background-color: darkgray; */
-}
-.login .container h3{
+.container h3{
+    margin-top: 10px;
     color: blue;
 }
 
-.login .container .content {
+.container .content {
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.login .container .content input{
+.container .content input{
     border: 1px solid gray;
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 15px;
 }
 
-.login .container .content input:hover{
+.container .content input:hover{
     border-bottom: 1px solid black;
 }
 
-.login .container .content button{
+.container .content button{
     border: none;
     padding: 5px;
     margin-bottom: 10px;
     width: 100%;
 }
 
-.login .container .content button:hover{
+.container .content button:hover{
     background-color: burlywood;
 }
 
-.login .container .content .link link{
+.container .content .link link{
     text-decoration-line: none;
     text-decoration: none;
     
@@ -50,7 +50,9 @@ a{
     text-decoration: none;
 }
 
-
+/* .attention {
+    padding: 20px;
+} */
 
 
 
