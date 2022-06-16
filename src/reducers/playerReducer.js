@@ -61,7 +61,7 @@ export const playerReducer = (state = initialState, action) => {
             return {
                 ...state,
                 players: [...action.payload.players],
-                player: {...action.payload.player}
+                player: {}
             }
 
         case types.playerDelete:

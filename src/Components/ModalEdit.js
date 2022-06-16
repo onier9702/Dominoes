@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import { creatingPlayerToUpdate } from '../actions/players';
 import { auth } from '../firebase/firebase-config';
-import '../styles/Edit.css';
+import '../styles/ModalEdit.css';
 
 export const ModalEdit = ({player}) => {
 

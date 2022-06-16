@@ -6,16 +6,19 @@ import { addLostGame, addWonGame, deletePlayer, masterPiece, uploadingGame } fro
 import { auth } from '../firebase/firebase-config';
 
 import '../styles/Table.css';
+// import { ModalAdd } from './ModalAdd';
 import { ModalEdit } from './ModalEdit';
 import { TablePlayers } from './TablePlayers';
 
 export const Table = () => {
+
 
     const dispatch = useDispatch();
     const {players, player} = useSelector(state => state.table);
 
     const {id} = player;
     const {uid} = auth.currentUser;
+    
 
     let name;
     if ( player ) {
@@ -55,35 +58,40 @@ export const Table = () => {
 
     };
 
-    // const handleRestart = () => {
-    //     console.log('handleRestart');
-    // }
   
 
   return (
     <div>
         <TablePlayers />
 
-        <div className="readme" >
-            {/* <h4 >Para Modificar</h4> */}
-            <h5 >Seleccione Jugador en la Tabla</h5>
-
-        
-            <div style={{display:'flex', flexDirection:'column',padding:20}}>
-                {(name) && <h5 style={{marginBottom:20}}>{name}</h5> }
-                <div>
-                    <button className="button-table" 
-                            onClick={handleWonGame} 
-                            >+ Ganado</button>
-                    <button className="button-table" 
-                            onClick={handleLostGame} 
-                            >+ Perdido</button>
-                </div>
-            </div>
-        </div>
         {
-            (player.id) && <ModalEdit key={player.id} player={player}/>  
+            (!player.id) && <h4 style={{marginLeft: 10, color:'blue'}} >Seleccione un Jugador</h4>
         }
+
+        <div className="editing-zone" >
+            
+            {
+                (player.id) && 
+                                <div className="readme" >
+                                    <h4>Agregar Juego</h4>
+                                    <div className="cuadro">
+                                        {(name) && <h5>{name}</h5> }
+                                        <div className="cuadro-buttons">
+                                            <button className="button-table" 
+                                                    onClick={handleWonGame} 
+                                                    >+ Ganado</button>
+                                            <button className="button-table" 
+                                                    onClick={handleLostGame} 
+                                                    >+ Perdido</button>
+                                        </div>
+                                    </div>
+                                </div>
+            }
+
+            {
+                (player.id) && <ModalEdit key={player.id} player={player}/>
+            }
+        </div>
 
         {
             (player.id) && <button 
@@ -92,20 +100,7 @@ export const Table = () => {
                             >
                                 <i className="fas fa-trash" >  {name}</i>
                             </button>
-        }
-
-        {/* {
-            (player.id) && 
-                            <button 
-                                className="btn-restablished"
-                                onClick={handleRestart}
-                            >
-                                Editar a {name}
-                            </button>
-        } */}
-
-        
-        
+        }        
             
     </div>
   )
