@@ -14,6 +14,8 @@ export const SinglePlayer = ({name, JJ, G, P, Dif, PorcientoG, PorcientoP}) => {
 
   const handleClick = (e) => {
     e.preventDefault();
+    console.log(e.target.innerText);
+
     const neccesaryName = e.target.innerText;
     dispatch( userClickPlayer(players, neccesaryName) );
   };

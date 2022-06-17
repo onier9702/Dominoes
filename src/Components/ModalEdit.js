@@ -14,13 +14,14 @@ export const ModalEdit = ({player}) => {
 
     const handleEdit = (e) => {
         e.preventDefault();
+        // console.log(e);
 
         const ganados = (e.target[0].value);
         const perdidos = (e.target[1].value);
         const G = parseInt(e.target[0].value);
         const P = parseInt(e.target[1].value);
 
-        console.log(G, P);
+        // console.log(G, P);
 
         if ( G < 0 || P < 0 ) {
             return Swal.fire('Error', 'Debe introducir correctamente Ganados y Perdidos', 'error');
@@ -51,8 +52,9 @@ export const ModalEdit = ({player}) => {
             
                 <button className="guardar-cambios" 
                         type="submit"
-                        onSubmit={handleEdit} 
-                        >Guardar Cambios</button>
+                        // onClick={handleEdit}
+                        onSubmit={handleEdit}
+                >Guardar Cambios</button>
             </form>
         </div>    
     </div>

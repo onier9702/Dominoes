@@ -16,10 +16,9 @@ export const Table = () => {
     const dispatch = useDispatch();
     const {players, player} = useSelector(state => state.table);
 
-    const {id} = player;
     const {uid} = auth.currentUser;
     
-
+    
     let name;
     if ( player ) {
         name = player.name;
@@ -32,8 +31,8 @@ export const Table = () => {
         e.preventDefault();
         if ( player.name) {
             dispatch(addWonGame( player ));
-            dispatch(masterPiece( id, players, player, 'G'));
-            dispatch( uploadingGame(uid, id, player, 'G') );
+            dispatch(masterPiece( player.id, players, player, 'G'));
+            dispatch( uploadingGame(uid, player.id, player, 'G') );
             
         } else {
             Swal.fire('Recuerde','Debe seleccionar Jugador', 'warning');
@@ -46,15 +45,15 @@ export const Table = () => {
         e.preventDefault();
         if ( player.name ) {
             dispatch(addLostGame( player ));
-            dispatch(masterPiece( id, players, player, 'P'));
-            dispatch( uploadingGame(uid, id, player, 'P' ) );
+            dispatch(masterPiece( player.id, players, player, 'P'));
+            dispatch( uploadingGame(uid, player.id, player, 'P' ) );
         } else {
             Swal.fire('Recuerde','Debe seleccionar Jugador', 'warning');
         };
     };
 
     const handleDelete = () => {
-        dispatch( deletePlayer(uid, id) );
+        dispatch( deletePlayer(uid, player.id) );
 
     };
 

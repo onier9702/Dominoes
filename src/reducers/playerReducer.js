@@ -20,7 +20,7 @@ export const playerReducer = (state = initialState, action) => {
         case types.playerChosen:
             return {
                 ...state,
-                player: action.payload,
+                player: {...action.payload},
             }
 
         case types.playerWon:

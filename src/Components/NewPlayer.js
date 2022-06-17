@@ -22,6 +22,7 @@ export const NewPlayer = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log(e);
     if ( name.trim().length < 2 ){
       Swal.fire('Error','Debe contener al menos dos letras','info');
     } else {

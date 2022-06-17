@@ -46,8 +46,8 @@ export const TablePlayers = () => {
   
   return (
 
-      <div className="table">
-        <table class="table">
+      <div className="table1">
+        <table className="table">
             <thead>
                 <tr>
                     <th style={{color:'blue'}} scope="col">Jugador</th>
