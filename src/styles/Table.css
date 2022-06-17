@@ -4,7 +4,8 @@
 } */
 
 .table {
-    padding: 20px;
+    /* margin-top: 20px; */
+    padding: 10px;
 }
 
 .btn-primary {
@@ -27,13 +28,20 @@
     color: #212529;
 } 
 
-.btn-danger{
+.button-trash{
     border-radius: 7px;
+    background-color: red;
+    border: none;
     color: white;
     position: fixed;
     right: 15px;
     bottom: 15px;
     margin-bottom: 5px;
+    width: fit-content;
+}
+.button-trash .fa-trash{
+    font-size: 12px;
+    /* width: 30px; */
 }
 
 .editing-zone{

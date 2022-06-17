@@ -71,6 +71,9 @@ export const LoginScreen = () => {
                   <Link to="/auth/register" className="link">Register here</Link>
                 </div>
             </form>
+
+            <i className="fas align-justify" style={{backgroud: 'blue',fontSize: 90, marginTop: 20, color:'black'}}></i>
+
       
           </div>
         {/* </div>

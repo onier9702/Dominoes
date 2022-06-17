@@ -95,10 +95,10 @@ export const Table = () => {
 
         {
             (player.id) && <button 
-                                className="btn btn-danger"
+                                className="button-trash"
                                 onClick={handleDelete}
                             >
-                                <i className="fas fa-trash" >  {name}</i>
+                                <i className="fas fa-trash" >  {`  ${player.name}`}</i>
                             </button>
         }        
             

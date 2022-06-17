@@ -1,0 +1,14 @@
+
+.legeng-tittle{
+
+    display: flex;
+    flex-direction: row;
+}
+
+.legeng-tittle h5{
+    margin-right: 7px;
+}
+
+
+
+

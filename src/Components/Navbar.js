@@ -1,62 +1,59 @@
 
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { startLogout } from '../actions/auth';
-import { savingJournal } from '../actions/players';
+import React, { useEffect, useRef, useState } from 'react';
+import { PutNavbar } from './PutNavbar';
 import '../styles/Navbar.css';
 
 
 
 export const Navbar = () => {
 
-    const dispatch = useDispatch();
-    const {players} = useSelector(state => state.table);
 
-    const handleLogout = (e) => {
+    const [active, setActive] = useState(false);
+
+    const closeMenu = () => setActive(false);
+
+    const handleClick = (e) => {
         e.preventDefault();
-        dispatch( startLogout() );
+        setActive(!active);
     };
 
-    // const handleSave = (e) => {
-    //     e.preventDefault();
-    //     dispatch( savingJournal( players ) );
+    const iconRef = useRef(null);
+    const divContainer = useRef(null);
 
-    // };
+    useEffect(() => {
+       
+        console.log('useEffect called!!!!');
+        if (active === true) {
+
+            document.addEventListener('click', (e) => {
+              e.preventDefault();
+              if ( !(divContainer.current.contains(e.target)) && !(iconRef.current.contains(e.target))) {
+                setActive(false);
+              }
+              
+            })
+        }
+      
+        return () => {
+          document.removeEventListener('click', () => {});
+          // setOpen(false);
+        }
+      }, [active])
+    
+
 
   return (
-    <div>
-        <nav >
-            <div className="navigation">
-                <ul >
-                    <li>
-                        <Link  to="/dashboard/" className="link" aria-current="page" >Tabla</Link>
-                    </li>
-                    <li>
-                        <Link  to="/dashboard/ranking" className="link" >Ranking</Link>
-                    </li>
-                    <li>
-                        <Link  to="/dashboard/newplayer" className="link" >AgregarJugador</Link>
-                    </li>
-                    {/* <li>
-                        <button
-                            type="button"
-                            className="btn-save"
-                            onClick={handleSave}
-                        >Guardar</button>
-                    </li> */}
-                    <li >
-                        <button
-                            type="button"
-                            className="logout"
-                            onClick={handleLogout}
-                        >Logout</button>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-     
+
+    <div className="navigation-div" ref={divContainer}>
+    
+        {
+            (active) ?  <i onClick={handleClick} class="bi bi-x-circle" ref={iconRef} ></i>  :  <i onClick={handleClick} className="bi bi-list" ref={iconRef} ></i>  
+        }
+        {
+            (active) && <PutNavbar isMob={true} closeMenu={closeMenu}/>
+        }
     </div>
+      
   )
 }
 
