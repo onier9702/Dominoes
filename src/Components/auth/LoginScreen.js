@@ -72,8 +72,10 @@ export const LoginScreen = () => {
                 </div>
             </form>
 
-            <i className="fas align-justify" style={{backgroud: 'blue',fontSize: 90, marginTop: 20, color:'black'}}></i>
-
+            <div style={{padding:30,marginTop:30}} >
+              <h5>Nota</h5>
+              <p>Para Cuba usar VPN</p>
+            </div>
       
           </div>
         {/* </div>

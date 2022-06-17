@@ -31,8 +31,6 @@ export const NewPlayer = () => {
     
     
   };
-  
-
     
   return (
     <div className="new-player">
@@ -51,6 +49,7 @@ export const NewPlayer = () => {
           <button 
                   type="submit"
                   className="btn-primary"
+                  onClick={handleSubmit}
           >Agregar</button>
         </form>
     </div>

@@ -22,7 +22,6 @@ export const Navbar = () => {
 
     useEffect(() => {
        
-        console.log('useEffect called!!!!');
         if (active === true) {
 
             document.addEventListener('click', (e) => {
