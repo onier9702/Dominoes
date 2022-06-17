@@ -15,7 +15,7 @@
     background-color: #dee2e6;
     color: #212529;
 }
-.button-table {
+/* .button-table {
     background-color: #dee2e6;
     border: none;
     color: #495057;
@@ -26,7 +26,7 @@
 }
 .button-table:hover {
     color: #212529;
-} 
+}  */
 
 .button-trash{
     border-radius: 7px;
@@ -69,6 +69,15 @@
     flex-direction: row;
     margin-top: 20px;
 }
+.readme .cuadro .cuadro-buttons .button-table{
+    border: none;
+    border-radius: 7px;
+    margin-right: 10px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    background-color: aquamarine;
+
+}
 /* .readme h4 {
     padding: 5px;
 } */
@@ -76,10 +85,10 @@
     padding: 5px;
 
 } */
-.readme .button-table{
+/* .readme .button-table{
     border-radius: 7px;
     width: fit-content;
-}
+} */
 .cont-edit {
     margin-left: 15px;
     border: 1.5px solid grey;
@@ -125,16 +134,26 @@
     }
     .readme .cuadro .cuadro-buttons{
         
-        margin-top: 40px;
+        margin-top: 20px;
     }
-    .button-table {
-        color: black;
-        height: fit-content;
-        font-size: 12px;
-        font-weight: 20px;
-        margin-top: 2px;
+    .readme .cuadro .cuadro-buttons .button-table{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+@media (max-width: 380px) {
+    .readme .cuadro .cuadro-buttons{
+        display: flex;
+        flex-direction: column;
+        /* margin-top: 5px; */
+    }
+    .readme .cuadro .cuadro-buttons{
         
-        /* margin-bottom: 10px; */
+        margin-top: 10px;
+    }
+    .readme .cuadro .cuadro-buttons .button-table{
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 }
 

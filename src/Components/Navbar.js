@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useState } from 'react';
 import { PutNavbar } from './PutNavbar';
 import '../styles/Navbar.css';
 
@@ -17,36 +17,13 @@ export const Navbar = () => {
         setActive(!active);
     };
 
-    const iconRef = useRef(null);
-    const divContainer = useRef(null);
-
-    useEffect(() => {
-       
-        if (active === true) {
-
-            document.addEventListener('click', (e) => {
-              e.preventDefault();
-              if ( !(divContainer.current.contains(e.target)) && !(iconRef.current.contains(e.target))) {
-                setActive(false);
-              }
-              
-            })
-        }
-      
-        return () => {
-          document.removeEventListener('click', () => {});
-          // setOpen(false);
-        }
-      }, [active])
-    
-
 
   return (
 
-    <div className="navigation-div" ref={divContainer}>
+    <div className="navigation-div">
     
         {
-            (active) ?  <i onClick={handleClick} class="bi bi-x-circle" ref={iconRef} ></i>  :  <i onClick={handleClick} className="bi bi-list" ref={iconRef} ></i>  
+            (active) ?  <i onClick={handleClick} class="bi bi-x-circle" ></i>  :  <i onClick={handleClick} className="bi bi-list" ></i>  
         }
         {
             (active) && <PutNavbar isMob={true} closeMenu={closeMenu}/>

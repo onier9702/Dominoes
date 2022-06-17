@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import { creatingPlayerToUpdate } from '../actions/players';
 import { auth } from '../firebase/firebase-config';
+import { useForm } from '../hooks/useForm';
 import '../styles/ModalEdit.css';
 
 export const ModalEdit = ({player}) => {
@@ -12,26 +13,36 @@ export const ModalEdit = ({player}) => {
     const { players } = useSelector(state => state.table);
     const {uid} = auth.currentUser;
 
+    const [formValue, handleInputChange] = useForm({
+        G: '',
+        P: '',
+    })
+
+    const {G, P} = formValue;
+
+    console.log(G, P);
+
     const handleEdit = (e) => {
         e.preventDefault();
         // console.log(e);
 
-        const ganados = (e.target[0].value);
-        const perdidos = (e.target[1].value);
-        const G = parseInt(e.target[0].value);
-        const P = parseInt(e.target[1].value);
+        // const ganados = (e.target[0].value);
+        // const perdidos = (e.target[1].value);
+        const Gan = parseInt(G);
+        const Per = parseInt(P);
+        console.log(Gan, Per);
 
         // console.log(G, P);
 
-        if ( G < 0 || P < 0 ) {
+        if ( Gan < 0 || Per < 0 ) {
             return Swal.fire('Error', 'Debe introducir correctamente Ganados y Perdidos', 'error');
         };
 
-        if ( !ganados || !perdidos ) {
+        if ( !G || !P ) {
             return Swal.fire('Error', 'Debe introducir correctamente Ganados y Perdidos', 'error');
         }
         
-        dispatch(creatingPlayerToUpdate(uid, player.id, player.name, G, P, players));
+        dispatch(creatingPlayerToUpdate(uid, player.id, player.name, Gan, Per, players));
 
     };
 
@@ -43,18 +54,26 @@ export const ModalEdit = ({player}) => {
             <form onSubmit={handleEdit}>
                 <div className="form-edit">
                     <label className="label1">G</label>
-                    <input type="number" />
+                    <input type="number" 
+                           onChange={handleInputChange}
+                           name="G"
+                           value={G}
+                    
+                    />
                 </div>
                 <div className="form-edit">
                     <label className="label1">P</label>
-                    <input type="number" />
+                    <input type="number"
+                           onChange={handleInputChange}
+                           name="P"
+                           value={P}
+                    />
                 </div>
             
                 <button className="guardar-cambios" 
                         type="submit"
-                        // onClick={handleEdit}
-                        onSubmit={handleEdit}
-                >Guardar Cambios</button>
+                        onSubmit={handleEdit} 
+                        >Guardar Cambios</button>
             </form>
         </div>    
     </div>
