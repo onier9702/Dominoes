@@ -11,48 +11,45 @@
 }
 
 .navigation ul {  
-    margin-left: 30px;
+    margin: 0px;
     padding: 0px;
     display: flex;
     flex-direction: column;
     list-style-type: none;
     text-decoration: none;
+    width: 100vw;
     
 }
 
 .navigation ul li {
-    margin-top: 4px;
-    margin-bottom: 4px;
+    border-bottom: 1px solid #48cae4;
     text-decoration: none;
     font-size: 20px;
+    height: 6vh;
+    width: 100vw;
+}
+.navigation ul li:hover , .navigation ul li:focus {
+    background-color: #0077b6;
 }
 .navigation ul li .link{
     color: black;
     text-decoration: none;
+    margin-left: 60px;
 }
 
-.navigation ul li .link:hover , .navigation ul li .link:focus {
-    color: white;
+.bi-box-arrow-right{
+    background-color: transparent;
+    color: black;
+    font-size: 1.2rem;
+    
 }
-
 .logout{
     border: none;
     background-color: transparent;
-    color: #0fff;
-    /* right: 5%; */
+    margin-left: 50px;
 }
 
-.logout:hover{
-    color: #00000F;
-}
-/* .btn-save{
-    border: none;
-    background-color: transparent;
-    color: #0bff;
-}
-.btn-save:hover{
-    color: black;
-} */
+
 
 
 

@@ -40,7 +40,7 @@ export const PutNavbar = ({isMob,closeMenu}) => {
                     type="button"
                     className="logout"
                     onClick={handleLogout}
-                >Logout</button>
+                ><i class="bi bi-box-arrow-right"></i> Salir</button> 
             </li>
         </ul>
     </nav>

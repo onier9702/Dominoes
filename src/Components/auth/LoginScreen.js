@@ -1,7 +1,8 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import Swal from 'sweetalert2';
 
 import { useForm } from '../../hooks/useForm';
 
@@ -26,6 +27,11 @@ export const LoginScreen = () => {
     e.preventDefault();
     dispatch(startLogin(name ,email, password));
   }
+
+  useEffect(() => {
+    Swal.fire('Nota', 'Para Cuba usar VPN','info');
+  }, [])
+  
 
   return (
     <>
@@ -72,10 +78,10 @@ export const LoginScreen = () => {
                 </div>
             </form>
 
-            <div style={{padding:30,marginTop:30}} >
+            {/* <div style={{padding:30,marginTop:30}} >
               <h5>Nota</h5>
               <p>Para Cuba usar VPN</p>
-            </div>
+            </div> */}
       
           </div>
         {/* </div>
