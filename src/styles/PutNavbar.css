@@ -3,9 +3,8 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    /* align-items: flex-start; */
     justify-content: start;
-    /* justify-content: center; */
+    width: 100vw;
 
     
 }
@@ -17,7 +16,7 @@
     flex-direction: column;
     list-style-type: none;
     text-decoration: none;
-    width: 100vw;
+    width: 100%;
     
 }
 
@@ -25,8 +24,8 @@
     border-bottom: 1px solid #48cae4;
     text-decoration: none;
     font-size: 20px;
-    height: 6vh;
-    width: 100vw;
+    /* height: 25%; */
+    width: 100%;
 }
 .navigation ul li:hover , .navigation ul li:focus {
     background-color: #0077b6;
@@ -45,6 +44,7 @@
 }
 .logout{
     border: none;
+    color: black;
     background-color: transparent;
     margin-left: 50px;
 }
