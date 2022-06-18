@@ -8,13 +8,13 @@
     padding: 10px;
 }
 
-.btn-primary {
+/* .btn-primary {
     margin: 20px;
     border: none;
     border-radius: 8px;
     background-color: #dee2e6;
     color: #212529;
-}
+} */
 /* .button-table {
     background-color: #dee2e6;
     border: none;
@@ -32,7 +32,7 @@
     border-radius: 7px;
     background-color: red;
     border: none;
-    color: white;
+    color: black;
     position: fixed;
     right: 15px;
     bottom: 15px;
@@ -72,10 +72,11 @@
 .readme .cuadro .cuadro-buttons .button-table{
     border: none;
     border-radius: 7px;
+    background-color: #0077b6;
+    color: black;
     margin-right: 10px;
     margin-top: 7px;
     margin-bottom: 7px;
-    background-color: aquamarine;
 
 }
 /* .readme h4 {
@@ -116,7 +117,7 @@
     margin-right: 10px;
 }
 .guardar-cambios {
-    background-color: aquamarine;
+    background-color: #0077b6;
     color: black;
     border: none;
     border-radius: 7px;

@@ -35,13 +35,13 @@ export const Ranking = () => {
     };
 
     // console.table(test);
-    let array = test.sort( (s1, s2)=> s2.G - s1.G  );
+    let array = test.sort( (s1, s2)=> s2.Dif - s1.Dif  );
 
     for (let i = 1; i < len; i++) {
 
-      if ( array[i-1].G === array[i].G ){
+      if ( array[i-1].Dif === array[i].Dif ){
 
-        if (array[i-1].Dif < array[i].Dif){
+        if (array[i-1].PorcientoG < array[i].PorcientoG){
           let borrow = array[i-1];
           array[i-1] = array[i];
           array[i] = borrow;

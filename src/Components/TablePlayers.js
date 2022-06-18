@@ -50,13 +50,13 @@ export const TablePlayers = () => {
         <table className="table">
             <thead>
                 <tr>
-                    <th style={{color:'blue'}} scope="col">Jugador</th>
-                    <th style={{color:'blue'}} scope="col">JJ</th>
-                    <th style={{color:'blue'}} scope="col">G</th>
-                    <th style={{color:'blue'}} scope="col">P</th>
-                    <th style={{color:'blue'}} scope="col">DIF</th>
-                    <th style={{color:'blue'}} scope="col">%G</th>
-                    <th style={{color:'blue'}} scope="col">%P</th>
+                    <th style={{color:'#023e8a'}} scope="col">Jugador</th>
+                    <th style={{color:'#023e8a'}} scope="col">JJ</th>
+                    <th style={{color:'#023e8a'}} scope="col">G</th>
+                    <th style={{color:'#023e8a'}} scope="col">P</th>
+                    <th style={{color:'#023e8a'}} scope="col">DIF</th>
+                    <th style={{color:'#023e8a'}} scope="col">%G</th>
+                    <th style={{color:'#023e8a'}} scope="col">%P</th>
 
                 </tr>
             </thead>
